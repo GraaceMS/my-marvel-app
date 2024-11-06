@@ -35,6 +35,7 @@ React Icons para ícones na interface.
 ## Instruções de Instalação e Execução:
 
 1- Clonar o repositório: git clone https://github.com/GraaceMS/my-marvel-app.git
+
 cd my-marvel-app
 
 2- Instalar as dependências: npm install
