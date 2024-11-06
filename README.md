@@ -45,4 +45,14 @@ cd my-marvel-app
 
 5- Iniciar o servidor de produção: npm start
 
+Segue imagens:
+
+- <img width="1478" alt="image" src="https://github.com/user-attachments/assets/01c1b673-53af-467d-a9a0-5b1ab1f5905d">
+- <img width="1439" alt="image" src="https://github.com/user-attachments/assets/a400106d-92d6-497e-9fe6-0f1335707a42">
+- <img width="1391" alt="image" src="https://github.com/user-attachments/assets/b8d0cc35-c1d7-428f-af1d-f01eee45cf70">
+
+
+
+
+
 
