@@ -7,7 +7,7 @@ import { RootState, useAppDispatch } from "../app/store/store";
 import { fetchCharacters } from "../app/marvelApi";
 import { Character } from "../app/types";
 import { FaSearch, FaHeart } from "react-icons/fa";
-import { toggleFavorite } from "../app/store/slices/favoritesSlice";
+import { toggleFavorite } from "../app/store/slices/favoritesSlice"; 
 import Link from "next/link";
 
 export default function Home() {
@@ -32,10 +32,6 @@ export default function Home() {
     loadCharacters();
   }, []);
 
-  const handleToggleFavorite = (id: number) => {
-    dispatch(toggleFavorite(id));
-  };
-
   const filteredCharacters = characters.filter((character) => {
     const matchesSearch = character.name.toLowerCase().includes(searchQuery.toLowerCase());
     const isFavorite = favorites.includes(character.id);
@@ -43,7 +39,6 @@ export default function Home() {
   });
 
   const totalPages = Math.ceil(filteredCharacters.length / itemsPerPage);
-
   const currentCharacters = filteredCharacters.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
@@ -91,33 +86,35 @@ export default function Home() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
           {currentCharacters.map((character) => (
-            <Link key={character.id} href={`/heroes/${character.id}`}> {}
-              <div className="flex flex-col items-center text-center p-4 border rounded-lg shadow-md bg-white w-60 h-72 max-w-sm cursor-pointer">
-                <img
-                  src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-                  alt={character.name}
-                  width={100}
-                  height={100}
-                  className="rounded-full mb-4"
-                />
-                <h2 className="font-bold text-lg mb-2">{character.name}</h2>
-                <p className="text-sm text-gray-600 h-16 overflow-hidden">
-                  {character.description || "Descrição indisponível."}
-                </p>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleToggleFavorite(character.id);
-                  }}
-                  className={`mt-2 text-2xl transition-transform duration-200 ${
-                    favorites.includes(character.id) ? "text-red-500" : "text-gray-400"
-                  }`}
-                  aria-label={favorites.includes(character.id) ? "Remover dos favoritos" : "Adicionar aos favoritos"}
-                >
-                  {favorites.includes(character.id) ? "❤️" : "🤍"}
-                </button>
-              </div>
-            </Link>
+            <div key={character.id} className="relative">
+              <Link href={`/heroes/${character.id}`}>
+                <div className="flex flex-col items-center text-center p-4 border rounded-lg shadow-md bg-white w-60 h-72 max-w-sm cursor-pointer">
+                  <img
+                    src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+                    alt={character.name}
+                    width={100}
+                    height={100}
+                    className="rounded-full mb-4"
+                  />
+                  <h2 className="font-bold text-lg mb-2">{character.name}</h2>
+                  <p className="text-sm text-gray-600 h-16 overflow-hidden">
+                    {character.description || "Descrição indisponível."}
+                  </p>
+                </div>
+              </Link>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  dispatch(toggleFavorite(character.id));
+                }}
+                className={`absolute top-2 right-2 text-2xl transition-transform duration-200 ${
+                  favorites.includes(character.id) ? "text-red-500" : "text-gray-400"
+                }`}
+                aria-label={favorites.includes(character.id) ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+              >
+                {favorites.includes(character.id) ? "❤️" : "🤍"}
+              </button>
+            </div>
           ))}
         </div>
 
