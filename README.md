@@ -1,6 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+
+## Single Page Application - Api - MARVEL 
 
 - Desenvolvi uma aplicação SPA (Single Page Application) utilizando a biblioteca React/Next, que consome a API da Marvel e permite aos usuários interagir com uma lista de heróis.
 - Funcionalidades:
