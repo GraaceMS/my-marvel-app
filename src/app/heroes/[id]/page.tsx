@@ -2,19 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { useSelector } from "react-redux";
-import { RootState, useAppDispatch } from "../../store/store";
 import { fetchCharacterById, fetchComicsByCharacterId } from "../../../app/marvelApi";
 import { Character, Comic } from "../../../app/types";
-import { toggleFavorite } from "../../store/slices/favoritesSlice";
 
 export default function HeroProfile() {
   const { id } = useParams();
   const [character, setCharacter] = useState<Character | null>(null);
   const [comics, setComics] = useState<Comic[]>([]);
-  const dispatch = useAppDispatch(); 
-
-  const favorites = useSelector((state: RootState) => state.favorites.items);
 
   useEffect(() => {
     const loadCharacterData = async () => {
@@ -30,10 +24,6 @@ export default function HeroProfile() {
 
     loadCharacterData();
   }, [id]);
-
-  const handleToggleFavorite = (id: number) => {
-    dispatch(toggleFavorite(id)); 
-  };
 
   if (!character) return <div>Carregando...</div>;
 
