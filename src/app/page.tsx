@@ -1,4 +1,3 @@
-// src/app/page.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -9,12 +8,14 @@ import { Character } from "../app/types";
 import { FaSearch, FaHeart } from "react-icons/fa";
 import { toggleFavorite } from "../app/store/slices/favoritesSlice"; 
 import Link from "next/link";
+import { Circles } from "react-loader-spinner";
 
 export default function Home() {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [showFavorites, setShowFavorites] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
   const itemsPerPage = 8;
 
   const favorites = useSelector((state: RootState) => state.favorites.items);
@@ -27,6 +28,8 @@ export default function Home() {
         setCharacters(data);
       } catch (error) {
         console.error("Erro ao carregar personagens:", error);
+      } finally {
+        setLoading(false);
       }
     };
     loadCharacters();
@@ -84,39 +87,46 @@ export default function Home() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-          {currentCharacters.map((character) => (
-            <div key={character.id} className="relative">
-              <Link href={`/heroes/${character.id}`}>
-                <div className="flex flex-col items-center text-center p-4 border rounded-lg shadow-md bg-white w-60 h-72 max-w-sm cursor-pointer">
+        {loading ? (
+          <div className="flex items-center justify-center h-48">
+            <Circles color="#00BFFF" height={80} width={80} />
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+            {currentCharacters.map((character) => (
+              <div key={character.id} className="relative">
+                <Link href={`/heroes/${character.id}`}>
+                  <div className="flex flex-col items-center text-center p-4 border rounded-lg shadow-md bg-white w-60 h-72 max-w-sm cursor-pointer">
                   <img
                     src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
                     alt={character.name}
-                    width={100}
-                    height={100}
-                    className="rounded-full mb-4"
+                    width={300}
+                    height={300}
+                    className="w-28 h-25 object-cover mb-4 rounded-lg"
                   />
-                  <h2 className="font-bold text-lg mb-2">{character.name}</h2>
-                  <p className="text-sm text-gray-600 h-16 overflow-hidden">
-                    {character.description || "Descrição indisponível."}
-                  </p>
-                </div>
-              </Link>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  dispatch(toggleFavorite(character.id));
-                }}
-                className={`absolute top-2 right-2 text-2xl transition-transform duration-200 ${
-                  favorites.includes(character.id) ? "text-red-500" : "text-gray-400"
-                }`}
-                aria-label={favorites.includes(character.id) ? "Remover dos favoritos" : "Adicionar aos favoritos"}
-              >
-                {favorites.includes(character.id) ? "❤️" : "🤍"}
-              </button>
-            </div>
-          ))}
-        </div>
+
+                    <h2 className="font-bold text-lg mb-2">{character.name}</h2>
+                    <p className="text-sm text-gray-600 h-16 overflow-hidden">
+                      {character.description || "Descrição indisponível."}
+                    </p>
+                  </div>
+                </Link>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    dispatch(toggleFavorite(character.id));
+                  }}
+                  className={`absolute top-2 right-2 text-2xl transition-transform duration-200 ${
+                    favorites.includes(character.id) ? "text-red-500" : "text-gray-400"
+                  }`}
+                  aria-label={favorites.includes(character.id) ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+                >
+                  {favorites.includes(character.id) ? "❤️" : "🤍"}
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
 
         <div className="flex items-center gap-2 mb-8">
           <button
