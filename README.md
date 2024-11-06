@@ -2,35 +2,47 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+- Desenvolvi uma aplicação SPA (Single Page Application) utilizando a biblioteca React/Next, que consome a API da Marvel e permite aos usuários interagir com uma lista de heróis.
+- Funcionalidades:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Home:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Exibição de uma lista de heróis da Marvel, de acordo com a listagem da API. Cada card de herói contém a imagem, nome, uma breve descrição e um botão para favoritar.
+Permitir filtrar os heróis pelo nome através de um campo de pesquisa.
+Mostrar apenas os personagens favoritos.
+Implementação de paginação tradicional com botões "Próximo" e "Anterior".
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Perfil do Herói:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Exibição dos dados do personagem (imagem, nome, breve descrição).
+Seção com detalhes adicionais sobre o herói.
 
-## Learn More
+Diferenciais:
 
-To learn more about Next.js, take a look at the following resources:
+Layout responsivo.
+Persistência dos dados de favoritos (mantendo os dados após reload da página).
+Uso de TypeScript para tipagem estática.
+Integração com o Redux para gerenciamento de estado.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Tecnologias Utilizadas:
+React.js e Next.js para a construção da interface do usuário.
+Redux para gerenciamento de estado.
+TypeScript para tipagem estática.
+Tailwind CSS para estilização.
+Axios para fazer requisições à API da Marvel.
+React Icons para ícones na interface.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Instruções de Instalação e Execução:
 
-## Deploy on Vercel
+1- Clonar o repositório: git clone https://github.com/GraaceMS/my-marvel-app.git
+cd my-marvel-app
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2- Instalar as dependências: npm install
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3- Executar a aplicação em modo de desenvolvimento: npm run dev
+
+4- Construir a aplicação para produção: npm run build
+
+5- Iniciar o servidor de produção: npm start
+
+
