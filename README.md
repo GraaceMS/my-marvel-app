@@ -28,7 +28,6 @@ Tecnologias Utilizadas:
 React.js e Next.js para a construção da interface do usuário.
 Redux para gerenciamento de estado.
 TypeScript para tipagem estática.
-Tailwind CSS para estilização.
 Axios para fazer requisições à API da Marvel.
 React Icons para ícones na interface.
 
