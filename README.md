@@ -1,6 +1,7 @@
 
 
 ## Single Page Application - Api - MARVEL 
+## URL PUBLICA DO PROJETO: https://my-marvel-app-u2n6-dlplox0jo-graces-projects-21db845a.vercel.app
 
 - Desenvolvi uma aplicação SPA (Single Page Application) utilizando a biblioteca React/Next, que consome a API da Marvel e permite aos usuários interagir com uma lista de heróis.
 - Funcionalidades:
